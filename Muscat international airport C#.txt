@@ -1,0 +1,115 @@
+// class for Airline
+public class Airline
+{
+    public int AirlineId { get; set; }
+    public string Name { get; set; }
+    public string ContactNumber { get; set; }
+    public string ContactEmail { get; set; }
+    public string Representative { get; set; }
+
+    public ICollection<Flight> Flights { get; set; }
+}
+
+// class for  Flight
+public class Flight
+{
+    public int FlightId { get; set; }
+    public string DepartureCity { get; set; }
+    public string DestinationCity { get; set; }
+    public DateTime DepartureTime { get; set; }
+    public DateTime ArrivalTime { get; set; }
+    public string Status { get; set; }
+
+    public int AirlineId { get; set; }
+    public Airline Airline { get; set; }
+
+    public int GateId { get; set; }
+    public Gate Gate { get; set; }
+}
+
+// class for passe nger
+
+public class Passenger
+{
+    public int PassengerId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public string Gender { get; set; }
+    public string Nationality { get; set; }
+    public string PassportNumber { get; set; }
+    public string ContactPhone { get; set; }
+    public string ContactEmail { get; set; }
+
+    public ICollection<Baggage> BaggageList { get; set; }
+}
+
+
+//class for baggeg
+public class Baggage
+{
+    public int BaggageId { get; set; }
+    public double Weight { get; set; }
+    public string TrackingNumber { get; set; }
+
+    public int PassengerId { get; set; }
+    public Passenger Passenger { get; set; }
+}
+
+//class for officer
+public class Officer
+{
+    public int OfficerId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Position { get; set; }
+    public string Department { get; set; }
+    public string ContactPhone { get; set; }
+    public string ContactEmail { get; set; }
+
+    public int SecurityCheckpointId { get; set; }
+    public SecurityCheckpoint Checkpoint { get; set; }
+}
+
+
+//class for terminal
+public class Terminal
+{
+    public int TerminalId { get; set; }
+    public string Name { get; set; }
+    public int Capacity { get; set; }
+    public string Location { get; set; }
+
+    public ICollection<Gate> Gates { get; set; }
+    public ICollection<SecurityCheckpoint> Checkpoints { get; set; }
+}
+
+//class for gate 
+public class Gate
+{
+    public int GateId { get; set; }
+    public string GateNumber { get; set; }
+    public bool IsAvailable { get; set; }
+
+    public int TerminalId { get; set; }
+    public Terminal Terminal { get; set; }
+
+    public ICollection<Flight> Flights { get; set; }
+}
+
+//securitycheckpoint 
+public class SecurityCheckpoint
+{
+    public int SecurityCheckpointId { get; set; }
+    public string Name { get; set; }
+    public int PassengerCapacity { get; set; }
+    public string Location { get; set; }
+
+    public int TerminalId { get; set; }
+    public Terminal Terminal { get; set; }
+
+    public ICollection<Officer> Officers { get; set; }
+}
+
+
+//I have used online tool to run C# , there is no fram works so I dont apply miagration for bulding relations
